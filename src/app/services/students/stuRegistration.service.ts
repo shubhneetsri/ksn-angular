@@ -12,10 +12,11 @@ export class StuRegistrationService {
   result;
   url;
   errorMessage;
+  private stuRegistrationModel = new stuRegistrationModel();
 
-  constructor(private httpClient: HttpClient) {}
-
-  books: string[] = [];
+  constructor(private httpClient: HttpClient) {
+   
+  }
 
   public add(name: string) {    
     this.httpClient.get(this.url).subscribe(data => {
@@ -24,18 +25,15 @@ export class StuRegistrationService {
 
   }
 
-  public save(): Observable<stuRegistrationModel[]> { 
-
+  public save(data:stuRegistrationModel) { 
     this.url = 'http://127.0.0.1:8000/api/add-book';
-    console.log(stuRegistrationModel.get(),'MODEL');
-    this.httpClient.post(this.url, data).subscribe({
+    this.httpClient.post(this.url,data).subscribe({
       //next: data => this.postId = data.id,
       error: error => console.error('There was an error!', error)
     });
   }
 
   clear() {
-    this.books = [];
   }
 
 }
