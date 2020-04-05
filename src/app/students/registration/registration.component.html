@@ -5,18 +5,9 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputImage">Class</label>
-      <select formControlName="class_id" id="inputClassId"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.class_id.errors }" >
-        <option selected>Choose...</option>
-        <option value="1">NC</option>
-        <option value="2">KG</option>
-        <option value="3">I</option>
-        <option value="4">II</option>
-        <option value="5">III</option>
-        <option value="6">IV</option>
-        <option value="7">V</option>
-        <option value="8">VI</option>
-        <option value="9">VII</option>
-        <option value="10">VIII</option>
+      <select formControlName="class_id" id="inputClassId"   class="form-control overlap-segment-1" [ngClass]="{ 'is-invalid': submitted && f.class_id.errors }" >
+        <option [ngValue]="null" disabled>Choose your profile</option>
+        <option *ngFor="let item of dd_class" [value]="item.id">{{item.roman_name}}</option>
       </select>
       <div *ngIf="submitted && f.class_id.errors" class="invalid-feedback">
         <div *ngIf="f.class_id.errors.required">Class is required</div>
@@ -25,9 +16,8 @@
     <div class="form-group col-md-6">
       <label for="inputAddress">Academic Year</label>
       <select formControlName="academic_year" id="inputAcademicYear" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.academic_year.errors }" >
-        <option selected>Choose...</option>
-        <option value="1">2019-20</option>
-        <option value="1">2020-21</option>
+        <option  disabled selected hidden value="">Choose...</option>
+        <option *ngFor="let item of dd_academic_years" [value]="item.id">{{item.academic_year}}</option>
       </select>
       <div *ngIf="submitted && f.academic_year.errors" class="invalid-feedback">
         <div *ngIf="f.academic_year.errors.required">Academic Year is required</div>
@@ -79,7 +69,7 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputDob">Date Of Birth</label>
-        <input formControlName="dob" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" id="inputDob" placeholder="Date Of Birth">
+        <input formControlName="dob" type="date" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" id="inputDob" placeholder="Date Of Birth">
         <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
           <div *ngIf="f.dob.errors.required">Date Of Birth is required</div>
         </div>  
